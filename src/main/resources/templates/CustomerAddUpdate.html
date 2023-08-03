@@ -1,0 +1,139 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Add-Update</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+  <!-- jQuery -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+  <!-- DataTables CSS -->
+  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.3/css/dataTables.bootstrap5.min.css">
+
+</head>
+<body class="hold-transition skin-blue sidebar-mini sidebar-collapse">
+<div class="wrapper">
+  <div class="content-wrapper">
+    <section class="content-header">
+      <div class="container-fluid">
+          <div class=" text-center mt-5">
+            <h1 class="m-0 text-dark"><span th:text="${customer.uuid == null} ? 'Add' : 'Update'"></span>
+              &nbsp;Customer</h1>
+          </div>
+      </div>
+    </section>
+
+    <section class="content container mt-5">
+
+      <form method="post" th:action="@{/add-update-customer}" action="#" class="card p-4">
+
+        <label>
+          <input name="uuid"
+                 th:value="${customer.uuid}" hidden="hidden"/>
+        </label>
+
+        <div class="form-group row">
+          <div class="col-lg-6">
+            <label for="firstName">First name*</label> <input type="text"
+                                                              class="form-control" id="firstName" name="firstName" aria-describedby=""
+                                                              th:value="${customer.firstName}" required />
+          </div>
+
+          <div class="col-lg-6">
+            <label for="lastName">Last name*</label> <input type="text"
+                                                            class="form-control" id="lastName" name="lastName" aria-describedby=""
+                                                            th:value="${customer.lastName}" required />
+          </div>
+        </div>
+
+
+        <div class="form-group row">
+          <div class="col-lg-6">
+            <label for="street">Street</label> <input type="text"
+                                                     class="form-control" id="street" name="street" aria-describedby=""
+                                                     th:value="${customer.street}" />
+          </div>
+
+            <div class="col-lg-6">
+              <label for="address">Address</label> <input type="text"
+                                                       class="form-control" id="address" name="address" aria-describedby=""
+                                                       th:value="${customer.address}"  />
+            </div>
+
+        </div>
+
+        <div class="form-group row">
+            <div class="col-lg-6">
+              <label for="city">City</label> <input type="text"
+                                                     class="form-control" id="city" name="city" aria-describedby="" th:value="${customer.city}"  />
+            </div>
+
+
+
+            <div class="col-lg-6">
+              <label for="state">State</label> <input type="text"
+                                                           class="form-control" id="state" name="state" aria-describedby=""
+                                                         th:value="${customer.state}"  />
+            </div>
+        </div>
+
+
+        <div class="form-group row">
+        <div class="col-lg-6">
+            <label for="email">Email</label> <input type="text"
+                                                     class="form-control" id="email" name="email" aria-describedby=""
+                                                     th:value="${customer.email}" />
+          </div>
+            <div class="col-lg-6">
+              <label for="phone">Phone</label> <input type="text"
+                                                           class="form-control" id="phone" name="phone" aria-describedby=""
+                                                           th:value="${customer.phone}"  />
+            </div>
+        </div>
+
+        <div class="form-group row justify-content-center mt-3" >
+          <button type="submit" class="btn btn-primary w-25" id="submitBtn">Submit</button>
+
+
+        </div>
+
+      </form>
+
+    </section>
+  </div>
+
+</div>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.20/dist/sweetalert2.min.js"></script>
+
+<script>
+
+            var message1 = "[[${successMsg}]]"
+            var message2 = "[[${errorMsg}]]";
+
+
+
+
+        // Check if message is not empty and display SweetAlert
+        if (message1.trim() !== '') {
+            Swal.fire({
+                icon: 'success',
+                title: message1,
+                showConfirmButton: false,
+                timer: 2000
+            });
+        }
+
+        if (message2.trim() !== '') {
+            Swal.fire({
+                icon: 'error',
+                title: message2,
+                showConfirmButton: false,
+                timer: 2000
+            });
+        }
+    </script>
+</html>
